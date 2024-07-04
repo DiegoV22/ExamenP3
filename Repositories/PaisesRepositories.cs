@@ -1,16 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using ExamenP3.Models;
+using Newtonsoft.Json;
+using SQLite;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using ExamenP3.Models;
-using Newtonsoft.Json.Linq;
-using SQLite;
 
 namespace ExamenP3.Repositories
 {
-    public class PaisesRepositories
+    public class PaisesRepository
     {
-        public string _dbPath;
+        private readonly string _dbPath;
         private SQLiteConnection conn;
+
+        public PaisesRepository(string dbPath)
+        {
+            _dbPath = dbPath;
+            Init();
+        }
 
         private void Init()
         {
@@ -21,38 +28,33 @@ namespace ExamenP3.Repositories
             conn.CreateTable<Paises>();
         }
 
-        public PaisesRepositories(string dbPath)
-        {
-            _dbPath = dbPath;
-        }
-
-        public List<Paises> DevuelveListadoPaises()
+        public List<Paises> GetSavedPaises()
         {
             Init();
             return conn.Table<Paises>().ToList();
         }
 
-        public void GuardarPais(Paises pais)
+        public void SavePais(Paises pais)
         {
             Init();
-            pais.GenerarCodigo();
             conn.Insert(pais);
         }
 
-        public void ActualizarPais(Paises pais)
+        public void UpdatePais(Paises pais)
         {
             Init();
             conn.Update(pais);
         }
 
-        public void EliminarPais(Paises pais)
+        public void DeletePais(Paises pais)
         {
             Init();
             conn.Delete(pais);
         }
 
-        public async Task<List<Paises>> ObtenerPaisesDesdeApiAsync()
+        public async Task<List<Paises>> FetchPaisesFromApiAsync()
         {
+<<<<<<< HEAD
             using (HttpClient client = new HttpClient())
             {
                 var response = await client.GetAsync("https://restcountries.com/v3.1/all");
@@ -94,6 +96,12 @@ namespace ExamenP3.Repositories
 
                 return paises;
             }
+=======
+            using HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync("https://restcountries.com/v3.1/all");
+            var paises = JsonConvert.DeserializeObject<List<Paises>>(response);
+            return paises;
+>>>>>>> penultima
         }
     }
 <<<<<<< HEAD

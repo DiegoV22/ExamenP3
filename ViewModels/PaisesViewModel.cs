@@ -1,68 +1,78 @@
 ﻿using ExamenP3.Models;
 using ExamenP3.Repositories;
+using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.Maui.Controls;
 
 namespace ExamenP3.ViewModels
 {
-    public class PaisesViewModel : BindableObject
+    public class PaisesViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Paises> paisesList;
-
-        public ObservableCollection<Paises> PaisesList
+        public ObservableCollection<Paises> Countries { get; set; }
+        private string _message;
+        public string Message
         {
-            get => paisesList;
+            get => _message;
             set
             {
-                paisesList = value;
+                _message = value;
                 OnPropertyChanged();
             }
         }
-
-        public ICommand ObtenerPaisesCommand { get; }
-        public ICommand GuardarPaisCommand { get; }
-        public ICommand ActualizarPaisCommand { get; }
-        public ICommand EliminarPaisCommand { get; }
+        public ICommand GetCountriesCommand { get; }
 
         public PaisesViewModel()
         {
-            PaisesList = new ObservableCollection<Paises>(App.PaisesRepo.DevuelveListadoPaises());
-
-            ObtenerPaisesCommand = new Command(async () => await ObtenerPaises());
-            GuardarPaisCommand = new Command<Paises>(GuardarPais);
-            ActualizarPaisCommand = new Command<Paises>(ActualizarPais);
-            EliminarPaisCommand = new Command<Paises>(EliminarPais);
+            Countries = new ObservableCollection<Paises>();
+            GetCountriesCommand = new Command(async () => await GetCountries());
         }
 
-        private async Task ObtenerPaises()
-        {
-            var paisesDesdeApi = await App.PaisesRepo.ObtenerPaisesDesdeApiAsync();
+        public event PropertyChangedEventHandler PropertyChanged;
 
-            foreach (var pais in paisesDesdeApi)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private async Task GetCountries()
+        {
+            try
             {
-                App.PaisesRepo.GuardarPais(pais);
-                PaisesList.Add(pais);
+                var countries = await App.PaisesRepo.FetchPaisesFromApiAsync();
+                foreach (var country in countries)
+                {
+                    country.Codigo = GenerateCode(country.Nombre, country.Region, country.Subregion, country.Status);
+                    App.PaisesRepo.SavePais(country);
+                }
+                LoadCountries();
+                Message = "Países obtenidos correctamente.";
+            }
+            catch (Exception ex)
+            {
+                Message = $"Error al obtener países: {ex.Message}";
             }
         }
 
-        private void GuardarPais(Paises pais)
+        private string GenerateCode(string name, string region, string subregion, string status)
         {
-            App.PaisesRepo.GuardarPais(pais);
-            PaisesList.Add(pais);
+            Random random = new Random();
+            int number = random.Next(1000, 2000);
+            string initials = "DV";
+            return $"{initials}{number}{region}{subregion}_{status}";
         }
 
-        private void ActualizarPais(Paises pais)
+        private void LoadCountries()
         {
-            App.PaisesRepo.ActualizarPais(pais);
-            var index = PaisesList.IndexOf(pais);
-            PaisesList[index] = pais;
-        }
-
-        private void EliminarPais(Paises pais)
-        {
-            App.PaisesRepo.EliminarPais(pais);
-            PaisesList.Remove(pais);
+            var countries = App.PaisesRepo.GetSavedPaises();
+            Countries.Clear();
+            foreach (var country in countries)
+            {
+                Countries.Add(country);
+            }
         }
     }
 }

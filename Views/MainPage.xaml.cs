@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿namespace ExamenP3
 {
     public partial class MainPage : ContentPage
@@ -13,10 +14,19 @@ namespace ExamenP3
     public partial class MainPage : ContentPage
     {
 >>>>>>> feAgregar archivos de proyecto.
+=======
+using Microsoft.Maui.Controls;
+
+namespace ExamenP3
+{
+    public partial class MainPage : ContentPage
+    {
+>>>>>>> penultima
         public MainPage()
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         private void OnCounterClicked(object sender, EventArgs e)
@@ -35,4 +45,8 @@ namespace ExamenP3
 =======
     }
 >>>>>>> feAgregar archivos de proyecto.
+=======
+    }
+>>>>>>> penultima
 }
+

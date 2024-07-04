@@ -2,29 +2,70 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 <<<<<<< HEAD
+<<<<<<< HEAD
              x:Class="ExamenP3.MainPage">
 =======
              x:Class="ExamenP3.MainPage"
              Title="MainPage">
 >>>>>>> feAgregar archivos de proyecto.
+=======
+             x:Class="ExamenP3.MainPage"
+             Title="Cristiano Ronaldo - El Mejor del Mundo">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Estilos para los labels -->
+            <Style x:Key="HeadlineLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#2E86C1" />
+                <Setter Property="Margin" Value="0,10,0,0" />
+            </Style>
+            <Style x:Key="BodyLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="#333333" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="Margin" Value="0,5,0,10" />
+            </Style>
+            <!-- Estilo para el StackLayout principal -->
+            <Style x:Key="ContentStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="Spacing" Value="20" />
+                <Setter Property="BackgroundColor" Value="#F0F0F0" />
+            </Style>
+            <!-- Estilo para la imagen -->
+            <Style x:Key="ImageStyle" TargetType="Image">
+                <Setter Property="HeightRequest" Value="300" />
+                <Setter Property="Aspect" Value="AspectFill" />
+                <Setter Property="Margin" Value="0,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+>>>>>>> penultima
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+        <StackLayout Style="{StaticResource ContentStackLayoutStyle}">
             <Image
+<<<<<<< HEAD
 <<<<<<< HEAD
                 Source="dotnet_bot.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
+=======
+                Source="bicho.jpg"
+                Style="{StaticResource ImageStyle}"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center" />
+>>>>>>> penultima
 
             <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+                Text="¿Por qué Cristiano Ronaldo es el mejor?"
+                Style="{StaticResource HeadlineLabelStyle}"
+                HorizontalOptions="Center" />
 
             <Label
+<<<<<<< HEAD
                 Text="Welcome to &#10;.NET Multi-platform App UI"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2"
@@ -55,6 +96,11 @@
 
 >>>>>>> feAgregar archivos de proyecto.
         </VerticalStackLayout>
+=======
+                Text="Cristiano Ronaldo es considerado uno de los mejores futbolistas de todos los tiempos por varias razones. Ha ganado múltiples títulos de liga, Champions League, y ha sido galardonado con el Balón de Oro en varias ocasiones. Su dedicación, ética de trabajo, habilidades técnicas, y capacidad para marcar goles en momentos cruciales lo destacan en el mundo del fútbol. Además, su longevidad en el deporte, manteniéndose en la cima durante más de una década, es un testimonio de su excepcional talento y disciplina."
+                Style="{StaticResource BodyLabelStyle}" />
+        </StackLayout>
+>>>>>>> penultima
     </ScrollView>
 
 </ContentPage>

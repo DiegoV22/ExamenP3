@@ -17,7 +17,12 @@ namespace ExamenP3
                 });
 
 #if DEBUG
+<<<<<<< HEAD
     		builder.Logging.AddDebug();
+=======
+            builder.Logging.AddDebug();
+#endif
+>>>>>>> penultima
 
 #endif
             string dbPath = FileAccessHelper.GetLocalFilePath("chuck.db3");
