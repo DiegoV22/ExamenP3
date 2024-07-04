@@ -1,13 +1,23 @@
+<<<<<<< HEAD
 ﻿namespace ExamenP3
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
 
+=======
+﻿using Microsoft.Maui.Controls;
+
+namespace ExamenP3
+{
+    public partial class MainPage : ContentPage
+    {
+>>>>>>> feAgregar archivos de proyecto.
         public MainPage()
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
 
         private void OnCounterClicked(object sender, EventArgs e)
         {
@@ -22,4 +32,7 @@
         }
     }
 
+=======
+    }
+>>>>>>> feAgregar archivos de proyecto.
 }

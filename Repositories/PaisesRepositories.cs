@@ -63,6 +63,7 @@ namespace ExamenP3.Repositories
 
                 foreach (var item in jsonArray)
                 {
+<<<<<<< HEAD
                     Paises pais = new Paises
                     {
                         Name = item["name"]?["official"]?.ToString(),
@@ -73,10 +74,30 @@ namespace ExamenP3.Repositories
                     };
                     pais.GenerarCodigo();
                     paises.Add(pais);
+=======
+                    var nombreOficial = item["name"]?["official"]?.ToString();
+                    if (!string.IsNullOrEmpty(nombreOficial))
+                    {
+                        Paises pais = new Paises
+                        {
+                            Name = nombreOficial,
+                            Region = item["region"]?.ToString(),
+                            Subregion = item["subregion"]?.ToString(),
+                            Status = item["status"]?.ToString(),
+                            Nombre = nombreOficial  // Usa el nombre oficial para generar el código
+                        };
+                        pais.GenerarCodigo();
+                        paises.Add(pais);
+                    }
+>>>>>>> feAgregar archivos de proyecto.
                 }
 
                 return paises;
             }
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> feAgregar archivos de proyecto.

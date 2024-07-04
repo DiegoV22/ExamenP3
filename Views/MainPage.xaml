@@ -1,13 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<<<<<<< HEAD
              x:Class="ExamenP3.MainPage">
+=======
+             x:Class="ExamenP3.MainPage"
+             Title="MainPage">
+>>>>>>> feAgregar archivos de proyecto.
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
             <Image
+<<<<<<< HEAD
                 Source="dotnet_bot.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
@@ -30,6 +36,24 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+=======
+                Source="bicho.jpg"
+                HeightRequest="200"
+                Aspect="AspectFit"
+                SemanticProperties.Description="Cristiano Ronaldo" />
+
+            <Label
+                Text="¿Por qué Cristiano Ronaldo es el mejor?"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Cristiano Ronaldo es considerado uno de los mejores futbolistas de todos los tiempos por varias razones. Ha ganado múltiples títulos de liga, Champions League, y ha sido galardonado con el Balón de Oro en varias ocasiones. Su dedicación, ética de trabajo, habilidades técnicas, y capacidad para marcar goles en momentos cruciales lo destacan en el mundo del fútbol. Además, su longevidad en el deporte, manteniéndose en la cima durante más de una década, es un testimonio de su excepcional talento y disciplina."
+                Style="{StaticResource Body}"
+                SemanticProperties.Description="Descripción de por qué Cristiano Ronaldo es considerado el mejor futbolista" />
+
+>>>>>>> feAgregar archivos de proyecto.
         </VerticalStackLayout>
     </ScrollView>
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ExamenP3.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace ExamenP3
 {
@@ -17,9 +18,12 @@ namespace ExamenP3
 
 #if DEBUG
     		builder.Logging.AddDebug();
-#endif
 
+#endif
+            string dbPath = FileAccessHelper.GetLocalFilePath("chuck.db3");
+            builder.Services.AddSingleton<PaisesRepositories>(s => ActivatorUtilities.CreateInstance<PaisesRepositories>(s, dbPath));
             return builder.Build();
+
         }
     }
 }
