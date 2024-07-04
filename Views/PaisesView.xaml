@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ExamenP3.ViewModels"
+             x:Class="ExamenP3.Views.PaisesView"
+             Title="PaisesView">
+
+    <ContentPage.BindingContext>
+        <local:PaisesViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="10">
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Button Text="Obtener Países" Command="{Binding ObtenerPaisesCommand}" />
+
+        <ListView ItemsSource="{Binding PaisesList}" SelectedItem="{Binding SelectedPais}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding name}" Detail="{Binding Codigo}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Entry Placeholder="Nombre del país" Text="{Binding SelectedPais.name}" />
+        <Entry Placeholder="Region" Text="{Binding SelectedPais.region}" />
+        <Entry Placeholder="Subregion" Text="{Binding SelectedPais.subregion}" />
+        <Entry Placeholder="Status" Text="{Binding SelectedPais.status}" />
+
+        <HorizontalStackLayout>
+            <Button Text="Guardar" Command="{Binding GuardarPaisCommand}" CommandParameter="{Binding SelectedPais}" />
+            <Button Text="Actualizar" Command="{Binding ActualizarPaisCommand}" CommandParameter="{Binding SelectedPais}" />
+            <Button Text="Eliminar" Command="{Binding EliminarPaisCommand}" CommandParameter="{Binding SelectedPais}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
